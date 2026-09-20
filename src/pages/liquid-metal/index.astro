@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
+import FinishSwatch from "../../components/FinishSwatch.astro";
+import { Image } from "astro:assets";
+import { liquidMetalImages, substrates, applications, finishes, patinaFinishes, processSteps } from "../../data/liquid-metal";
+---
+
+<BaseLayout
+  title="Liquid Metal Coatings — Real Metal Finishes"
+  description="Lazlo's Liquid Metal coating applies real brass, copper, bronze, zinc, graphite and iron onto wood, steel, glass, FRP, MDF, ACP, concrete and more — for architecture, interiors and furniture."
+  path="/liquid-metal/"
+>
+  <Hero
+    image={liquidMetalImages.applicationsShowcase}
+    alt="Real metal Liquid Metal finishes applied to doors, lighting and decor objects"
+    eyebrow="Liquid Metal Coatings"
+    title="Redefining Surfaces with <em>Real Metal</em> Finishes"
+    lede="A revolutionary technique that turns everyday materials into high-end metallic masterpieces — by applying real metal onto rigid surfaces, in architecture, interiors, furniture and art."
+    primaryLabel="Discuss Your Project"
+    primaryHref="/contact/"
+    secondaryLabel="View Applications"
+    secondaryHref="/liquid-metal/applications/"
+    height="tall"
+  />
+
+  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Transform the Ordinary into the Extraordinary"
+        title="Real Metal Coatings for Almost Any Surface"
+        lede="Lazlo sprays real metal onto rigid substrates to create a tactile, elegant finish that looks and feels like solid metal — suitable for both indoor and outdoor environments."
+      />
+      <p class="substrate-label">Suitable substrates include:</p>
+      <ul class="substrate-pills">
+        {substrates.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Artistry Meets Function" title="Applications" align="center" lede="Liquid Metal is engineered to work across furniture, walls, ceilings, doors, sculpture and architectural detailing." />
+      <div class="grid grid-4">
+        {applications.map((app, i) => (
+          <div class="application-tile reveal">
+            <span class="index">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{app.name}</h3>
+            <p class="text-muted">{app.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="center-cta"><a href="/liquid-metal/applications/" class="btn btn-outline">Explore Applications in Detail</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="A Palette of Pure Metal" title="Choose Your Finish" align="center" lede="Seven real metal finishes, plus custom alloy blends on request." />
+      <div class="grid grid-4">
+        {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} />)}
+      </div>
+      <div class="center-cta"><a href="/liquid-metal/finishes/" class="btn btn-outline">View Finish Collection</a></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={liquidMetalImages.antiqueAesthetic} alt="Antique patina finishes on doors, furniture and sculpture" width={900} height={700} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Craft the Antique Aesthetic" title="Antique Patina & Oxidised Finishes" lede="Through controlled aging techniques, we achieve stunning textures like rusted iron, verdigris copper and antique brass — each one one-of-a-kind." />
+        <ul class="chip-list">
+          {patinaFinishes.map((p) => <li>{p.name}</li>)}
+        </ul>
+        <a href="/liquid-metal/patina/" class="btn btn-primary" style="margin-top:2rem;">Explore Antique Patina</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="From Studio to Site" title="In-House Job Work & On-Site Application" align="center" />
+      <div class="grid grid-2 service-grid">
+        <div class="service-card reveal">
+          <h3>In-House Job Work</h3>
+          <p class="text-muted">Custom finishes completed at our workshop, under precision-controlled conditions.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>On-Site Application</h3>
+          <p class="text-muted">Suitable for large-scale, built-in or sensitive surfaces that can't come to us.</p>
+        </div>
+      </div>
+      <div class="grid grid-5 process-grid">
+        {processSteps.map((step) => (
+          <div class="process-step reveal">
+            <span class="step-num">{step.step}</span>
+            <h3>{step.title}</h3>
+            <p class="text-muted">{step.description}</p>
+          </div>
+        ))}
+      </div>
+      <p class="coming-soon reveal">
+        <strong>Coming soon:</strong> ready-to-install door skins, designer furniture &amp; wall panels, and sculptural / decorative metal art.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Also From Lazlo" title="Chrome Spray Finishes" align="center" lede="A mirror-like, high-gloss chrome-effect coating for ceramics, plastics, wood, metals, MDF and more." />
+      <div class="center-cta"><a href="/liquid-metal/chrome/" class="btn btn-outline">Explore Chrome Finishes</a></div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Have a Surface in Mind?"
+    lede="Turn your concept into a premium real-metal finish — talk to our team about your project."
+    primaryLabel="Talk to Lazlo"
+    secondaryLabel="Explore Aluminium"
+    secondaryHref="/aluminium/"
+  />
+</BaseLayout>
+
+<style>
+  .substrate-label { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.75rem; }
+  .substrate-pills, .chip-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .substrate-pills li, .chip-list li { padding: 0.4em 0.9em; border: 1px solid var(--border-strong); border-radius: 999px; font-size: 0.82rem; color: var(--text-muted); }
+  .application-tile { padding: 1.75rem 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.3s var(--ease), transform 0.3s var(--ease); }
+  .application-tile:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .application-tile .index { display: block; font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); margin-bottom: 0.75rem; }
+  .application-tile h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .application-tile p { font-size: 0.85rem; line-height: 1.5; }
+  .center-cta { display: flex; justify-content: center; margin-top: 3rem; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .split-media :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); aspect-ratio: 4/3; }
+  .service-grid { margin-bottom: 3rem; }
+  .service-card { padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .service-card h3 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 0.75rem; }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  .process-step { text-align: center; padding: 1.5rem 1rem; }
+  .step-num { display: block; font-family: var(--font-display); font-size: 2rem; color: var(--accent); margin-bottom: 0.75rem; }
+  .process-step h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .process-step p { font-size: 0.85rem; }
+  .coming-soon { margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+  .section-alt { background: var(--bg-elevated); }
+  @media (max-width: 1100px) { .grid-5 { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .grid-5, .service-grid { grid-template-columns: 1fr; } }
+</style>

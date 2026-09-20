@@ -1,0 +1,192 @@
+---
+// Sends submissions via Web3Forms (https://web3forms.com) — a zero-backend
+// form-to-email service, works on any static host including Hostinger.
+// Get a free access key at https://web3forms.com and replace the value below.
+const WEB3FORMS_ACCESS_KEY = "398e7c57-7179-40d6-80f8-558a2304cc74";
+---
+
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  id="contact-form"
+  class="contact-form"
+>
+  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+  <input type="hidden" name="subject" value="New Project Enquiry — Lazlo India" />
+  <input type="hidden" name="from_name" value="Lazlo India Website" />
+  <p class="honeypot">
+    <label>Leave this field empty <input name="botcheck" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <div class="row">
+    <div class="field">
+      <label for="firstName">First Name<span aria-hidden="true">*</span></label>
+      <input type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+    </div>
+    <div class="field">
+      <label for="lastName">Last Name<span aria-hidden="true">*</span></label>
+      <input type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="email">Email<span aria-hidden="true">*</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="mobile">Mobile Number<span aria-hidden="true">*</span></label>
+      <input type="tel" id="mobile" name="mobile" required autocomplete="tel" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="company">Company <span class="optional">(optional)</span></label>
+      <input type="text" id="company" name="company" autocomplete="organization" />
+    </div>
+    <div class="field">
+      <label for="projectType">Project Type</label>
+      <select id="projectType" name="projectType">
+        <option value="liquid-metal">Liquid Metal Finish</option>
+        <option value="patina">Antique Patina</option>
+        <option value="chrome">Chrome Finish</option>
+        <option value="aluminium">Aluminium Profiles / Signage</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="message">Message<span aria-hidden="true">*</span></label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary" id="submit-btn">Discuss Your Project</button>
+
+  <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const status = document.getElementById("form-status");
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const honeypot = form.querySelector<HTMLInputElement>('[name="botcheck"]');
+    if (honeypot && honeypot.value) return;
+
+    submitBtn && (submitBtn.disabled = true);
+    if (status) status.textContent = "Sending your message…";
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        if (status) status.textContent = "Thank you — we've received your message and will be in touch shortly.";
+        form.reset();
+      } else {
+        throw new Error(result.message || "Submission failed");
+      }
+    } catch {
+      if (status) {
+        status.textContent = "Something went wrong. Please email info@lazloindia.com or call +91 95588 09753 directly.";
+      }
+    } finally {
+      submitBtn && (submitBtn.disabled = false);
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  label span[aria-hidden] {
+    color: var(--accent);
+    margin-left: 0.2em;
+  }
+
+  .optional {
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  input,
+  select,
+  textarea {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.85em 1em;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    transition: border-color 0.25s var(--ease);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .btn {
+    align-self: flex-start;
+  }
+
+  .form-status {
+    min-height: 1.2em;
+    font-size: 0.88rem;
+    color: var(--accent-bright);
+  }
+
+  @media (max-width: 640px) {
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

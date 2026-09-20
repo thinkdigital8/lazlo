@@ -1,0 +1,88 @@
+# Netlify-style redirects mapping the old WordPress/Elementor site structure
+# to the new Astro site. If hosting elsewhere (Vercel, Cloudflare, etc.),
+# translate this list into that platform's redirect config format.
+
+# Core pages
+/aluminium-profiles/           /aluminium/profiles/       301
+/antique-patina-finishes/      /liquid-metal/patina/      301
+/liquid-metals-finishes/       /liquid-metal/              301
+/chrome-finishes/              /liquid-metal/chrome/       301
+/by-industriy2/                /industries/                301
+/product/                      /aluminium/                 301
+
+# Legacy WooCommerce/theme scaffold pages (not real business content)
+/shop/         /   301
+/cart/         /   301
+/checkout/     /   301
+/my-account/   /   301
+/evercompare/  /   301
+/sample-page/  /   301
+/home3/        /   301
+/home-new/     /   301
+
+# Individual product URLs -> closest matching new category page
+/product/sl30el/  /aluminium/snap-frames/  301
+/product/hlp-box/  /aluminium/box-frames/  301
+/product/pl30sq/  /aluminium/snap-frames/  301
+/product/pl75sq/  /aluminium/snap-frames/  301
+/product/pw105/  /aluminium/seg-frames/  301
+/product/tf16/  /aluminium/seg-frames/  301
+/product/fs31/  /aluminium/seg-frames/  301
+/product/fs51/  /aluminium/seg-frames/  301
+/product/fs71/  /aluminium/seg-frames/  301
+/product/fs101/  /aluminium/seg-frames/  301
+/product/es1/  /aluminium/profiles/  301
+/product/fsl40-60-80-150/  /aluminium/box-frames/  301
+/product/dfs31-45-62/  /aluminium/directory/  301
+/product/dfp16-31-45-62/  /aluminium/directory/  301
+/product/bb110/  /aluminium/totem/  301
+/product/sb20/  /aluminium/totem/  301
+/product/st/  /aluminium/totem/  301
+/product/keder/  /aluminium/keder/  301
+/product/skyloop/  /aluminium/keder/  301
+/product/dcs-40-52-60-80/  /aluminium/directory/  301
+/product/np12/  /aluminium/name-plates/  301
+/product/hlp/  /aluminium/box-frames/  301
+/product/pl30elds/  /aluminium/snap-frames/  301
+/product/fe15/  /aluminium/profiles/  301
+/product/tf25/  /aluminium/seg-frames/  301
+/product/pl25el/  /aluminium/snap-frames/  301
+/product/pl25sq/  /aluminium/snap-frames/  301
+/product/pl48sq/  /aluminium/snap-frames/  301
+/product/sb40/  /aluminium/totem/  301
+/product/sb80/  /aluminium/totem/  301
+/product/np70/  /aluminium/name-plates/  301
+/product/rt/  /aluminium/totem/  301
+/product/lb50ds/  /aluminium/box-frames/  301
+/product/fe40/  /aluminium/profiles/  301
+/product/np50/  /aluminium/name-plates/  301
+/product/np70-2/  /aluminium/name-plates/  301
+/product/fe60/  /aluminium/profiles/  301
+/product/dfs93-124-155/  /aluminium/directory/  301
+/product/fe80/  /aluminium/profiles/  301
+/product/fe100/  /aluminium/profiles/  301
+/product/dfp93-124-155/  /aluminium/directory/  301
+/product/fb70ds/  /aluminium/box-frames/  301
+/product/fb101ds/  /aluminium/box-frames/  301
+/product/hlp-box-2/  /aluminium/box-frames/  301
+/product/fsl100ds-150ds/  /aluminium/box-frames/  301
+/product/pl48sq-2/  /aluminium/snap-frames/  301
+/product/pf9/  /aluminium/totem/  301
+/product/pl75sq-2/  /aluminium/snap-frames/  301
+/product/tt70/  /aluminium/name-plates/  301
+/product/np28/  /aluminium/name-plates/  301
+/product/np50-2/  /aluminium/name-plates/  301
+/product/np70-3/  /aluminium/name-plates/  301
+/product/dcs110ds/  /aluminium/directory/  301
+/product/pl30sqds/  /aluminium/snap-frames/  301
+/product/fb38ds/  /aluminium/box-frames/  301
+/product/hlp-box-3/  /aluminium/box-frames/  301
+/product/dcs-100-120-150-225-2/  /aluminium/directory/  301
+/product/pl75sq-3/  /aluminium/snap-frames/  301
+
+# Patina finish product codes (M-series / T-series) -> patina page
+/product/m*/  /liquid-metal/patina/  301
+/product/t0*/  /liquid-metal/patina/  301
+
+# Anything else under /product/ that isn't matched above
+/product/*  /aluminium/  301

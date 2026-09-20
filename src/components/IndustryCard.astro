@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  icon: ImageMetadata;
+  name: string;
+  description: string;
+  href?: string;
+}
+
+const { icon, name, description, href = "/industries/" } = Astro.props;
+---
+
+<a href={href} class="industry-card reveal">
+  <div class="icon">
+    <Image src={icon} alt="" width={48} height={48} loading="lazy" />
+  </div>
+  <h3 class="h3">{name}</h3>
+  <p class="text-muted">{description}</p>
+</a>
+
+<style>
+  .industry-card {
+    display: block;
+    padding: 1.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+
+  .industry-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(237, 28, 36, 0.45);
+    box-shadow: 0 16px 32px -18px rgba(237, 28, 36, 0.45);
+  }
+
+  .industry-card:hover .icon {
+    transform: scale(1.08);
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.25rem;
+    opacity: 0.92;
+    transition: transform 0.35s var(--ease);
+  }
+
+  .industry-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+  }
+
+  .industry-card p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+</style>

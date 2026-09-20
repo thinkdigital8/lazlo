@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import CTASection from "../../../components/CTASection.astro";
+import { Image } from "astro:assets";
+import { chromeColours, chromeSubstrates, chromeApplications } from "../../../data/liquid-metal";
+import chromeHero from "../../../assets/chrome/chrome-hero.png";
+import chromeProcess from "../../../assets/chrome/chrome-process.png";
+import chromeColourRange from "../../../assets/chrome/chrome-colour-range.png";
+import chromeTech from "../../../assets/chrome/chrome-technical-features.png";
+---
+
+<BaseLayout
+  title="Chrome Spray Finishes — Mirror-Like Coatings"
+  description="Lazlo's Chrome Spray Finish replicates the high-gloss, mirror-like look of real chrome on ceramics, plastics, rubber, wood, metals, MDF and terracotta — in silver, gold, rose gold and a full colour range."
+  path="/liquid-metal/chrome/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }, { label: "Chrome Finishes", href: "/liquid-metal/chrome/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container split">
+      <div class="split-copy">
+        <SectionHeading
+          as="h1"
+          eyebrow="Brilliant Chrome Effects on Any Surface"
+          title="Chrome Spray Finishes"
+          lede="Lazlo's Chrome Spray Finish is a breakthrough decorative coating system that replicates the high-gloss, mirror-like look of real chrome using an advanced chemical process. Unlike traditional chrome plating, our system is more flexible and can be used on nearly any rigid surface."
+        />
+      </div>
+      <div class="split-media reveal">
+        <Image src={chromeHero} alt="Mirror-polished chrome finish furniture and a gold liquid metal effect sample" width={900} height={600} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Where Can You Use It?" title="Infinite Applications, From Decor to Packaging" align="center" />
+      <div class="grid grid-4">
+        {chromeApplications.map((a) => (
+          <div class="app-tile reveal">
+            <h3>{a.name}</h3>
+            <p class="text-muted">{a.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={chromeProcess} alt="Chrome spray finishing process" width={900} height={520} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Behind Every Shine Is Precision" title="Substrates & Process" lede="Our chrome spray system adheres to ceramics, plastics, rubber, wood, metals, MDF and terracotta." />
+        <ul class="chip-list">
+          {chromeSubstrates.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container split reverse">
+      <div class="split-media reveal">
+        <Image src={chromeColourRange} alt="Chrome finish colour range swatches" width={900} height={670} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Not Just Chrome. A Full Spectrum." title="Our Colour Range" lede="Beyond mirror silver, choose from a full spectrum of colours — plus custom combinations on request." />
+        <ul class="chip-list">
+          {chromeColours.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={chromeTech} alt="Chrome finish technical and durability features" width={900} height={570} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Engineered to Perform" title="Technical + Durability Features" />
+        <ul class="feature-list">
+          <li>Adheres to multiple substrates</li>
+          <li>UV-resistant and scratch-resistant options</li>
+          <li>Weatherproof capability</li>
+          <li>Suitable for interior and exterior use</li>
+          <li>Low-maintenance finish</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Transform Your Surfaces with Chrome Magic" lede="Tell us about your object or surface and desired colour — we'll advise on feasibility and finish." />
+</BaseLayout>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .split.reverse .split-media { order: 2; }
+  .split-media :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); aspect-ratio: 4/3; }
+  .section-alt { background: var(--bg-elevated); }
+  .app-tile { padding: 1.75rem 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .app-tile h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .app-tile p { font-size: 0.85rem; }
+  .chip-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .chip-list li { padding: 0.4em 0.85em; border: 1px solid var(--border-strong); border-radius: 999px; font-size: 0.8rem; color: var(--text-muted); }
+  .feature-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .feature-list li { padding-left: 1.5rem; position: relative; color: var(--text-muted); font-size: 0.92rem; }
+  .feature-list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+  @media (max-width: 900px) { .split, .split.reverse { grid-template-columns: 1fr; } .split.reverse .split-media { order: 0; } }
+</style>

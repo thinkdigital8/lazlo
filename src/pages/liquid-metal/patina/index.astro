@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import CTASection from "../../../components/CTASection.astro";
+import { Image } from "astro:assets";
+import { patinaFinishes, patinaMetals, patinaSizes } from "../../../data/liquid-metal";
+import patinaHero from "../../../assets/patina/patina-hero.png";
+import sampleM from "../../../assets/patina/patina-sample-m0001.jpg";
+import sampleT from "../../../assets/patina/patina-sample-t0001.jpg";
+---
+
+<BaseLayout
+  title="Antique Patina Finishes — Rusted Iron, Verdigris Copper, Antique Brass"
+  description="Lazlo's handcrafted antique patina finishes on steel, zinc, brass and copper — including rusted iron, verdigris copper and antique brass — for wall panels, furniture, facades and signage."
+  path="/liquid-metal/patina/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }, { label: "Antique Patina", href: "/liquid-metal/patina/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container split">
+      <div class="split-copy">
+        <SectionHeading
+          as="h1"
+          eyebrow="Patina Surfaces"
+          title="Instantly Vintage, Forever Classic"
+          lede="Lazlo brings handcrafted patina finishes to steel, zinc, brass and copper. Patina is applied to activated metal surfaces to create a unique, mottled, artistic ambiance that varies from sheet to sheet — then sealed with a clear coat to protect against scratches, scrapes and rusting caused by environmental factors."
+        />
+      </div>
+      <div class="split-media reveal">
+        <Image src={patinaHero} alt="Interior with an antique patina finished feature wall" width={800} height={900} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Craft the Antique Aesthetic" title="Signature Patina Finishes" align="center" />
+      <div class="grid grid-3">
+        <div class="patina-card reveal">
+          <div class="patina-media"><Image src={sampleM} alt="Handcrafted patina finish sample on metal sheet, showing oxidised colour variation" width={600} height={1000} /></div>
+          <h3>{patinaFinishes[0].name}</h3>
+          <p class="text-muted">{patinaFinishes[0].description}</p>
+        </div>
+        <div class="patina-card reveal">
+          <div class="patina-media"><Image src={sampleT} alt="Handcrafted patina finish sample showing natural sheet-to-sheet variation" width={600} height={1000} /></div>
+          <h3>{patinaFinishes[1].name}</h3>
+          <p class="text-muted">{patinaFinishes[1].description}</p>
+        </div>
+        <div class="patina-card reveal text-card">
+          <h3>{patinaFinishes[2].name}</h3>
+          <p class="text-muted">{patinaFinishes[2].description}</p>
+          <p class="note">Our pre-finished sheets are one of a kind, with high variability in colour patterning from sheet to sheet — by design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="split-copy">
+        <SectionHeading eyebrow="Applications" title="Interior & Exterior Use" />
+        <div class="app-cols">
+          <div>
+            <h3>Interior</h3>
+            <p class="text-muted">Wall panels, ceiling panels, door skins, furniture skins, lighting fixtures, art installations.</p>
+          </div>
+          <div>
+            <h3>Exterior</h3>
+            <p class="text-muted">Facades, signage, garden installations, fences, outdoor lighting, sculpture installations.</p>
+          </div>
+        </div>
+      </div>
+      <div class="split-copy">
+        <h3 class="h3">Available in</h3>
+        <p class="text-muted" style="margin-bottom:1rem;">{patinaMetals.join(", ")}</p>
+        <h3 class="h3">Standard Sizes</h3>
+        <ul class="chip-list">
+          {patinaSizes.map((s) => <li>{s}</li>)}
+        </ul>
+        <p class="text-muted" style="margin-top:1.25rem;">On-site installation available, or we supply adhesives and tapes for DIY application.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Bring an Aged Metal Surface to Life" lede="Share your space and substrate — we'll recommend the right patina finish and installation method." />
+</BaseLayout>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .split-media :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); aspect-ratio: 4/5; }
+  .section-alt { background: var(--bg-elevated); }
+  .patina-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; padding-bottom: 1.5rem; }
+  .patina-card.text-card { padding: 1.75rem; display: flex; flex-direction: column; justify-content: center; }
+  .patina-media { aspect-ratio: 3/4; overflow: hidden; }
+  .patina-media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .patina-card h3 { font-family: var(--font-display); font-size: 1.2rem; margin: 1.25rem 1.25rem 0.5rem; }
+  .patina-card.text-card h3 { margin: 0 0 0.5rem; }
+  .patina-card p { font-size: 0.88rem; margin-inline: 1.25rem; line-height: 1.55; }
+  .patina-card.text-card p { margin-inline: 0; }
+  .patina-card .note { margin-top: 1rem; font-size: 0.8rem; color: var(--text-faint); }
+  .app-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+  .app-cols h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .chip-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip-list li { padding: 0.4em 0.85em; border: 1px solid var(--border-strong); border-radius: 999px; font-size: 0.8rem; color: var(--text-muted); }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .app-cols { grid-template-columns: 1fr; } }
+</style>

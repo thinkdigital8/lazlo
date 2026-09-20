@@ -1,0 +1,359 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CTASection from "../components/CTASection.astro";
+import IndustryCard from "../components/IndustryCard.astro";
+import ProductCard from "../components/ProductCard.astro";
+import FinishSwatch from "../components/FinishSwatch.astro";
+import { Image } from "astro:assets";
+import {
+  liquidMetalImages,
+  substrates,
+  applications,
+  finishes,
+  patinaFinishes,
+  processSteps,
+} from "../data/liquid-metal";
+import { aluminiumCategories, aluminiumImages } from "../data/aluminium";
+import { industries } from "../data/industries";
+import { site } from "../data/site";
+import patinaSample from "../assets/patina/patina-sample-m0001.jpg";
+import chromeHero from "../assets/chrome/chrome-hero.png";
+---
+
+<BaseLayout
+  title="Real Metal Finishes & Aluminium Profiles"
+  description="Lazlo specialises in Liquid Metal coatings — real brass, copper, bronze and iron finishes for architecture, interiors and furniture — alongside precision 6063 aluminium profiles for signage and display, from Ahmedabad, India."
+  path="/"
+>
+  <Hero
+    image={liquidMetalImages.studioToSite}
+    alt="Applying a real metal spray coating to a rigid substrate in Lazlo's workshop"
+    eyebrow="Real Metal. Reimagined."
+    title="Transform Surfaces with <em>Real Metal</em> Finishes"
+    lede="Lazlo creates premium architectural, interior and decorative surfaces with Liquid Metal coating — real brass, copper, bronze and iron, sprayed onto almost any rigid substrate."
+    primaryLabel="Explore Liquid Metal"
+    primaryHref="/liquid-metal/"
+    secondaryLabel="View Applications"
+    secondaryHref="/liquid-metal/applications/"
+  />
+
+  <!-- LIQUID METAL INTRO -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={liquidMetalImages.intro} alt="Brass, copper and bronze metal finishes applied to furniture and lighting objects" width={900} height={720} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading
+          eyebrow="Liquid Metal Coatings"
+          title="A Revolutionary Way to Bring Real Metal to Any Surface"
+          lede="Lazlo's Liquid Metal technique turns everyday materials into high-end metallic surfaces. By applying real metal onto rigid substrates, we make bold design ideas possible across architecture, interiors, furniture and art — a tactile, elegant finish that looks and feels like solid metal, indoors or out."
+        />
+        <p class="substrate-label">Works on:</p>
+        <ul class="substrate-pills">
+          {substrates.map((s) => <li>{s}</li>)}
+        </ul>
+        <a href="/liquid-metal/" class="btn btn-primary" style="margin-top:2rem;">Explore Liquid Metal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Where It's Used"
+        title="Liquid Metal Applications"
+        lede="From furniture to full architectural facades, Liquid Metal is built for surfaces that need to make a statement."
+        align="center"
+      />
+      <div class="grid grid-4 applications-grid">
+        {applications.map((app, i) => (
+          <div class="application-tile reveal">
+            <span class="index">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{app.name}</h3>
+            <p class="text-muted">{app.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="center-cta">
+        <a href="/liquid-metal/applications/" class="btn btn-outline">View All Applications</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- METAL FINISH COLLECTION -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="The Material Palette"
+        title="A Palette of Pure Metal"
+        lede="Choose from seven real metal finishes — each one applied as genuine metal, not a printed or painted imitation."
+        align="center"
+      />
+      <div class="grid grid-4">
+        {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} />)}
+      </div>
+      <div class="center-cta">
+        <a href="/liquid-metal/finishes/" class="btn btn-outline">Explore All Finishes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATINA -->
+  <section class="section section-alt">
+    <div class="container split reverse">
+      <div class="split-media reveal">
+        <Image src={patinaSample} alt="Handcrafted oxidised patina finish sample showing natural colour variation" width={700} height={900} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading
+          eyebrow="Antique Patina & Oxidised Finishes"
+          title="Instantly Vintage, Forever Classic"
+          lede="Through controlled aging techniques, Lazlo achieves handcrafted patina finishes on steel, zinc, brass and copper — textures like rusted iron, verdigris copper and antique brass, each one one-of-a-kind and sealed with a protective clear coat."
+        />
+        <ul class="chip-list">
+          {patinaFinishes.map((p) => <li>{p.name}</li>)}
+        </ul>
+        <a href="/liquid-metal/patina/" class="btn btn-primary" style="margin-top:2rem;">Explore Antique Patina</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHROME TEASER -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={chromeHero} alt="Mirror-polished chrome finish furniture and a gold liquid metal effect sample" width={900} height={520} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading
+          eyebrow="Also From Lazlo"
+          title="Chrome Spray Finishes"
+          lede="A mirror-like, high-gloss chrome-effect coating that works on ceramics, plastics, wood, metals, MDF and more — in silver, gold, rose gold and a full spectrum of custom colours."
+        />
+        <a href="/liquid-metal/chrome/" class="btn btn-outline" style="margin-top:1.5rem;">Explore Chrome Finishes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIO TO SITE -->
+  <section class="section section-alt process-section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="How It Works"
+        title="From Studio to Site"
+        lede="Custom finishes completed under controlled conditions in our workshop, or applied directly on-site for large, built-in or sensitive surfaces."
+        align="center"
+      />
+      <div class="grid grid-5 process-grid">
+        {processSteps.map((step) => (
+          <div class="process-step reveal">
+            <span class="step-num">{step.step}</span>
+            <h3>{step.title}</h3>
+            <p class="text-muted">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ALUMINIUM SECTION -->
+  <section class="section aluminium-section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Precision Engineering"
+        title="Precision Aluminium Solutions for Modern Spaces"
+        lede={`With ${site.yearsExperience} years of experience, Lazlo manufactures a wide range of aluminium alloy 6063 profiles for sign and display — engineered for reliable, professional installations across every sector.`}
+      />
+      <div class="grid grid-4">
+        {aluminiumCategories.map((cat) => (
+          <ProductCard
+            image={cat.products[0]?.image ?? aluminiumImages.productGroup}
+            alt={`${cat.name} — aluminium profile system`}
+            title={cat.shortName}
+            description={cat.description}
+            href={`/aluminium/${cat.slug}/`}
+            ctaLabel="View Products"
+          />
+        ))}
+      </div>
+      <div class="center-cta">
+        <a href="/aluminium/" class="btn btn-primary">Explore Aluminium Solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Who We Serve"
+        title="Built for Every Sector"
+        lede="From healthcare to hospitality, Lazlo's Liquid Metal and aluminium solutions are engineered for the sectors that need them most."
+        align="center"
+      />
+      <div class="grid grid-3">
+        {industries.slice(0, 6).map((ind) => (
+          <IndustryCard icon={ind.icon} name={ind.name} description={ind.description} href={`/industries/#${ind.slug}`} />
+        ))}
+      </div>
+      <div class="center-cta">
+        <a href="/industries/" class="btn btn-outline">View All Industries</a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .split.reverse {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split.reverse .split-media {
+    order: 2;
+  }
+
+  .split-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4 / 3;
+  }
+
+  .section-alt {
+    background: var(--bg-elevated);
+  }
+
+  .substrate-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .substrate-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .substrate-pills li,
+  .chip-list li {
+    padding: 0.4em 0.9em;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .applications-grid {
+    margin-top: 1rem;
+  }
+
+  .application-tile {
+    padding: 1.75rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+
+  .application-tile:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .application-tile .index {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .application-tile h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .application-tile p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .center-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .grid-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    .grid-5 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .grid-5 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+
+  .step-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .process-step h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .process-step p {
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 900px) {
+    .split,
+    .split.reverse {
+      grid-template-columns: 1fr;
+    }
+    .split.reverse .split-media {
+      order: 0;
+    }
+  }
+</style>

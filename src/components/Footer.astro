@@ -1,0 +1,171 @@
+---
+import { site, nav } from "../data/site";
+import logo from "../assets/brand/lazlo-logo-light.png";
+import { Image } from "astro:assets";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo" aria-label="Lazlo — Home">
+        <Image src={logo} alt="Lazlo" width={140} height={29} />
+      </a>
+      <p class="text-muted">
+        Real metal Liquid Metal finishes and precision aluminium profiles for architecture, interiors and signage. {site.yearsExperience} years in aluminium profile manufacturing.
+      </p>
+      <a href={site.social.linkedin} target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <h3>Explore</h3>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-nav">
+      <h3>Liquid Metal</h3>
+      <ul>
+        <li><a href="/liquid-metal/applications/">Applications</a></li>
+        <li><a href="/liquid-metal/finishes/">Metal Finishes</a></li>
+        <li><a href="/liquid-metal/patina/">Antique Patina</a></li>
+        <li><a href="/liquid-metal/chrome/">Chrome Finishes</a></li>
+        <li><a href="/blog/">Journal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Get in Touch</h3>
+      <ul>
+        <li><a href={site.phoneHref}>{site.phone}</a></li>
+        <li><a href={site.emailHref}>{site.email}</a></li>
+        <li class="address">
+          <strong>{site.addresses.office.label}:</strong><br />
+          {site.addresses.office.lines.map((line) => <>{line}<br /></>)}
+        </li>
+        <li class="address">
+          <strong>{site.addresses.workshop.label}:</strong><br />
+          {site.addresses.workshop.lines.map((line) => <>{line}<br /></>)}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; {year} {site.name}. All rights reserved.</p>
+    <p>Crafted by <a href="https://8dots.in/" target="_blank" rel="noopener noreferrer">8Dots</a></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    padding-block: clamp(3rem, 6vw, 5rem) 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr 1.1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-brand .logo {
+    display: inline-flex;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-brand .logo :global(img) {
+    height: 24px;
+    width: auto;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    max-width: 32ch;
+    margin-bottom: 1.25rem;
+  }
+
+  .social-link {
+    display: inline-block;
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: var(--accent);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .footer-nav h3,
+  .footer-contact h3 {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 1.1rem;
+    font-weight: 600;
+  }
+
+  .footer-nav ul,
+  .footer-contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-nav a,
+  .footer-contact a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color 0.25s var(--ease);
+  }
+
+  .footer-nav a:hover,
+  .footer-contact a:hover {
+    color: var(--accent-bright);
+  }
+
+  .footer-contact .address {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .footer-contact .address strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .footer-bottom {
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+  }
+
+  .footer-bottom a {
+    color: var(--text-faint);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import CTASection from "../../../components/CTASection.astro";
+import { Image } from "astro:assets";
+import SubstrateSelector from "../../../components/SubstrateSelector.astro";
+import { liquidMetalImages, applications } from "../../../data/liquid-metal";
+---
+
+<BaseLayout
+  title="Liquid Metal Applications — Furniture, Walls, Ceilings & Doors"
+  description="See how Lazlo's Liquid Metal finish is used across custom furniture, feature walls, wall art, ceiling installations, designer door skins, sculptures and architectural details."
+  path="/liquid-metal/applications/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }, { label: "Applications", href: "/liquid-metal/applications/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading as="h1" eyebrow="Artistry Meets Function" title="Liquid Metal Applications" lede="A real-metal surface finish built to work everywhere a designer needs it to — from a single statement piece to a full architectural surface." />
+      <div class="hero-banner reveal">
+        <Image src={liquidMetalImages.applicationsShowcase} alt="Liquid Metal applied across doors, lighting, planters, ceilings and wall art" width={1600} height={900} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 app-list">
+        {applications.map((app, i) => (
+          <div class="app-row reveal">
+            <span class="index">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h2 class="h3">{app.name}</h2>
+              <p class="text-muted">{app.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Built to Perform" title="Suitable Substrates" align="center" lede="Liquid Metal can be applied to a wide range of rigid substrates. Select one to see it up close." />
+      <SubstrateSelector />
+    </div>
+  </section>
+
+  <CTASection
+    title="See Liquid Metal on Your Surface"
+    lede="Tell us about your furniture, wall, ceiling or door project and we'll recommend the right finish and substrate."
+  />
+</BaseLayout>
+
+<style>
+  .hero-banner { margin-top: 2.5rem; border-radius: var(--radius-lg); overflow: hidden; }
+  .hero-banner :global(img) { width: 100%; height: auto; object-fit: cover; }
+  .app-list { gap: 2.5rem 2rem; }
+  .app-row { display: flex; gap: 1.5rem; align-items: flex-start; }
+  .app-row .index { font-family: var(--font-display); font-size: 1.75rem; color: var(--accent); flex-shrink: 0; }
+  .app-row h2 { margin-bottom: 0.5rem; }
+  .section-alt { background: var(--bg-elevated); }
+  @media (max-width: 700px) { .app-list { grid-template-columns: 1fr; } }
+</style>

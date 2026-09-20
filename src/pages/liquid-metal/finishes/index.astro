@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import CTASection from "../../../components/CTASection.astro";
+import FinishSwatch from "../../../components/FinishSwatch.astro";
+import { Image } from "astro:assets";
+import { liquidMetalImages, finishes, customAlloyNote } from "../../../data/liquid-metal";
+---
+
+<BaseLayout
+  title="Metal Finish Collection — Brass, Copper, Bronze, Iron & More"
+  description="Explore Lazlo's Liquid Metal finish collection: brass, copper, bronze, aluminium, graphite, zinc and iron — real metal finishes for architecture, interiors and furniture."
+  path="/liquid-metal/finishes/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }, { label: "Metal Finishes", href: "/liquid-metal/finishes/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading as="h1" eyebrow="A Palette of Pure Metal" title="The Metal Finish Collection" lede="Every finish in this collection is genuine metal, applied to the surface — not a printed or painted imitation." align="center" />
+      <div class="grid grid-4">
+        {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} />)}
+      </div>
+      <p class="alloy-note reveal">{customAlloyNote}</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={liquidMetalImages.metalPalette} alt="Sample palette of Lazlo's liquid metal finishes" width={900} height={900} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Real Metal Coatings" title="Finish, Not Just Colour" lede="Because each finish is real metal, it can be further treated — polished, brushed, or aged into a patina — for a result that behaves like solid metal because, on the surface, it is." />
+        <a href="/liquid-metal/patina/" class="btn btn-outline" style="margin-top:1.5rem;">See Antique Patina Options</a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Not Sure Which Finish Fits Your Project?" lede="Share your substrate, space and style — we'll help you choose the right metal finish." />
+</BaseLayout>
+
+<style>
+  .alloy-note { text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 0.9rem; max-width: 56ch; margin-inline: auto; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .split-media :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); aspect-ratio: 1; }
+  .section-alt { background: var(--bg-elevated); }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,174 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: ImageMetadata;
+  alt: string;
+  eyebrow: string;
+  title: string;
+  lede: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  height?: "full" | "tall";
+}
+
+const {
+  image,
+  alt,
+  eyebrow,
+  title,
+  lede,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  height = "full",
+} = Astro.props;
+---
+
+<section class:list={["hero", height]}>
+  <div class="hero-media">
+    <Image src={image} alt={alt} width={2400} height={1500} loading="eager" fetchpriority="high" />
+    <div class="scrim"></div>
+  </div>
+  <div class="container hero-content">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 class="h1" set:html={title} />
+    <p class="lede">{lede}</p>
+    <div class="actions">
+      <a href={primaryHref} class="btn btn-primary">{primaryLabel}</a>
+      {secondaryLabel && (
+        <a href={secondaryHref} class="btn btn-outline">{secondaryLabel}</a>
+      )}
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <span></span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 92vh;
+    overflow: hidden;
+    color: var(--text);
+  }
+
+  .hero.tall {
+    min-height: 62vh;
+    align-items: center;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    animation: hero-kenburns 22s ease-out forwards;
+  }
+
+  @keyframes hero-kenburns {
+    from {
+      transform: scale(1.12);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-media :global(img) {
+      animation: none;
+    }
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(8, 8, 9, 0.96) 0%, rgba(8, 8, 9, 0.55) 45%, rgba(8, 8, 9, 0.35) 100%),
+      linear-gradient(to right, rgba(8, 8, 9, 0.55), rgba(8, 8, 9, 0.15) 60%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(4rem, 10vw, 7rem);
+    max-width: 760px;
+  }
+
+  .hero-content .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-content .lede {
+    color: rgba(243, 241, 236, 0.82);
+    margin-bottom: 2.25rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 36px;
+    border: 1.5px solid rgba(243, 241, 236, 0.4);
+    border-radius: 999px;
+    z-index: 1;
+  }
+
+  .scroll-cue span {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 3px;
+    height: 6px;
+    background: var(--accent-bright);
+    border-radius: 999px;
+    transform: translateX(-50%);
+    animation: scrollcue 2s infinite;
+  }
+
+  @keyframes scrollcue {
+    0% { opacity: 1; top: 6px; }
+    70% { opacity: 0; top: 16px; }
+    100% { opacity: 0; top: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue span {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: 82vh;
+    }
+    .scroll-cue {
+      display: none;
+    }
+  }
+</style>

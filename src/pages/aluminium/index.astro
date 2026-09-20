@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { aluminiumCategories, aluminiumImages } from "../../data/aluminium";
+import { site } from "../../data/site";
+---
+
+<BaseLayout
+  title="Aluminium Profiles for Sign & Display"
+  description="Lazlo manufactures high-grade aluminium alloy 6063 profiles for sign and display — SEG fabric frames, snap frames, name plates, directory systems, box frames, totem and keder profiles."
+  path="/aluminium/"
+>
+  <Hero
+    image={aluminiumImages.hero}
+    alt="Aluminium profile system for sign and display"
+    eyebrow="Precision Engineering"
+    title="Precision Aluminium Solutions for Modern Spaces"
+    lede={`With ${site.yearsExperience} years of experience, Lazlo manufactures a complete range of aluminium alloy 6063 profiles for sign and display — engineered for professional, long-lasting installations.`}
+    primaryLabel="Discuss Your Project"
+    primaryHref="/contact/"
+    secondaryLabel="View Aluminium Profiles"
+    secondaryHref="/aluminium/profiles/"
+    height="tall"
+  />
+
+  <div class="container"><Breadcrumbs items={[{ label: "Aluminium", href: "/aluminium/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Smart Aluminium Solutions"
+        title="Innovative Aluminium Frames for Every Sector"
+        lede="We work with everyone from small local sign companies to the largest trade suppliers — offering a complete line of innovative aluminium profile solutions for indoor and outdoor advertising, all manufactured from top-quality aluminium alloy 6063."
+      />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Product Catalogue" title="Aluminium Profile Systems" align="center" lede="Seven profile categories covering fabric, snap, name plate, directory, box, totem and keder systems." />
+      <div class="grid grid-4">
+        {aluminiumCategories.map((cat) => (
+          <ProductCard
+            image={cat.products[0]?.image ?? aluminiumImages.productGroup}
+            alt={`${cat.name} — aluminium profile system`}
+            title={cat.shortName}
+            description={cat.description}
+            href={`/aluminium/${cat.slug}/`}
+            ctaLabel="View Products"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Need Aluminium Profiles for a Project?"
+    lede="Tell us your sign, display or wayfinding requirement and we'll recommend the right profile system."
+    primaryLabel="Request a Quote"
+  />
+</BaseLayout>
+
+<style>
+  .section-alt { background: var(--bg-elevated); }
+</style>

@@ -1,0 +1,90 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lede?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  eyebrow = "Let's Build Something",
+  title = "Have a Surface in Mind?",
+  lede = "Turn your concept into a premium metal finish — in real brass, copper, bronze or a precision aluminium system.",
+  primaryLabel = "Talk to Lazlo",
+  primaryHref = "/contact/",
+  secondaryLabel = "Request a Quote",
+  secondaryHref = "/contact/",
+} = Astro.props;
+---
+
+<section class="cta-section section">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2">{title}</h2>
+      <p class="lede">{lede}</p>
+      <div class="actions">
+        <a href={primaryHref} class="btn btn-primary">{primaryLabel}</a>
+        <a href={secondaryHref} class="btn btn-outline">{secondaryLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-panel {
+    position: relative;
+    padding: clamp(2.5rem, 6vw, 5rem);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(237, 28, 36, 0.16), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(168, 18, 26, 0.18), transparent 55%),
+      var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .cta-panel::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    z-index: -1;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(237, 28, 36, 0.25) 60deg, transparent 140deg);
+    animation: cta-rotate 14s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes cta-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-panel::after {
+      animation: none;
+    }
+  }
+
+  .cta-panel .lede {
+    margin-inline: auto;
+    margin-top: 0.5rem;
+  }
+
+  .cta-panel .eyebrow {
+    justify-content: center;
+  }
+
+  .actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
+import IndustryCard from "../../components/IndustryCard.astro";
+import { industries } from "../../data/industries";
+---
+
+<BaseLayout
+  title="Industries We Serve"
+  description="Lazlo's Liquid Metal finishes and aluminium profile systems serve healthcare, education, corporate offices, real estate, residential, public infrastructure, banks and retail."
+  path="/industries/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Industries", href: "/industries/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading as="h1" eyebrow="Who We Serve" title="Built for Every Sector" align="center" lede="From healthcare wayfinding to hospitality feature walls, Lazlo's Liquid Metal and aluminium solutions are engineered for the sectors that need them most." />
+      <div class="grid grid-3">
+        {industries.map((ind) => (
+          <div id={ind.slug}>
+            <IndustryCard icon={ind.icon} name={ind.name} description={ind.description} href="/contact/" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Have a Project in Your Sector?" lede="Tell us about your space and we'll recommend the right Liquid Metal or aluminium solution." />
+</BaseLayout>

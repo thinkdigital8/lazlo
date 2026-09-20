@@ -1,0 +1,47 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  align?: "left" | "center";
+  as?: "h1" | "h2" | "h3";
+}
+
+const { eyebrow, title, lede, align = "left", as = "h2" } = Astro.props;
+const Tag = as;
+---
+
+<div class:list={["section-heading", align, "reveal"]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag class:list={[as === "h1" ? "h1" : "h2"]} set:html={title} />
+  {lede && <p class="lede">{lede}</p>}
+</div>
+
+<style>
+  .section-heading {
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .section-heading.center {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .section-heading.center .lede {
+    margin-inline: auto;
+  }
+
+  .section-heading .eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .section-heading h1,
+  .section-heading h2 {
+    margin-bottom: 0.9rem;
+  }
+
+  .section-heading :global(em) {
+    font-style: italic;
+    color: var(--accent-bright);
+  }
+</style>

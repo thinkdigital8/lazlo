@@ -1,0 +1,41 @@
+---
+import { site } from "../data/site";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      logo: `${site.url}/logo.png`,
+      image: `${site.url}/og-image.jpg`,
+      telephone: site.phone,
+      email: site.email,
+      address: [
+        {
+          "@type": "PostalAddress",
+          streetAddress: "D1125, Swati Clover, Shilaj Circle, Sardar Patel Ring Road, Thaltej",
+          addressLocality: "Ahmedabad",
+          addressRegion: "Gujarat",
+          postalCode: "380054",
+          addressCountry: "IN",
+        },
+      ],
+      sameAs: [site.social.linkedin],
+      description:
+        "Lazlo specialises in real metal Liquid Metal coatings, antique patina finishes and precision aluminium profiles for signage, display and architectural applications.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you're looking for could not be found."
+  path="/404/"
+  noindex={true}
+>
+  <section class="section not-found">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1 class="h1">This Surface Doesn't Exist</h1>
+      <p class="lede">The page you're looking for may have moved. Try exploring Liquid Metal, Aluminium, or get in touch directly.</p>
+      <div class="actions">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+        <a href="/contact/" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .not-found .container {
+    max-width: 640px;
+  }
+  .not-found .eyebrow {
+    justify-content: center;
+  }
+  .not-found h1 {
+    margin-block: 1rem;
+  }
+  .not-found .lede {
+    margin-inline: auto;
+    margin-bottom: 2rem;
+  }
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

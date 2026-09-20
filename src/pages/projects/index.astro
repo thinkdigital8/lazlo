@@ -1,0 +1,175 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
+import { Image } from "astro:assets";
+
+import lmIntro from "../../assets/liquid-metal/liquid-metal-coatings-intro.png";
+import lmApplications from "../../assets/liquid-metal/real-metal-coatings-applications.png";
+import lmArtistry from "../../assets/liquid-metal/artistry-meets-function.png";
+import lmPalette from "../../assets/liquid-metal/metal-finish-palette.png";
+import lmAntique from "../../assets/liquid-metal/antique-aesthetic.png";
+import lmStudio from "../../assets/liquid-metal/studio-to-site.png";
+import patinaHero from "../../assets/patina/patina-hero.png";
+import patinaM from "../../assets/patina/patina-sample-m0001.jpg";
+import patinaT from "../../assets/patina/patina-sample-t0001.jpg";
+import chromeHero from "../../assets/chrome/chrome-hero.png";
+import aluProductGroup from "../../assets/aluminium/product-group-overview.png";
+import aluWorkshop from "../../assets/aluminium/workshop-in-house.png";
+import aluHero from "../../assets/aluminium/aluminium-profiles-hero.jpg";
+
+const gallery = [
+  { img: lmApplications, category: "Liquid Metal", caption: "Real metal Liquid Metal finish applied to doors, lighting and decor objects" },
+  { img: lmArtistry, category: "Liquid Metal", caption: "Liquid Metal finish across furniture, sconces and architectural details" },
+  { img: lmIntro, category: "Liquid Metal", caption: "Brass, copper and bronze Liquid Metal finishes" },
+  { img: patinaHero, category: "Patina", caption: "Antique patina feature wall in an interior lounge setting" },
+  { img: patinaM, category: "Patina", caption: "Handcrafted oxidised patina finish sample" },
+  { img: patinaT, category: "Patina", caption: "Patina finish sample showing natural sheet-to-sheet variation" },
+  { img: lmAntique, category: "Patina", caption: "Verdigris and antique patina finishes on doors, furniture and sculpture" },
+  { img: chromeHero, category: "Liquid Metal", caption: "Mirror-polished chrome finish and gold liquid metal sample" },
+  { img: lmPalette, category: "Liquid Metal", caption: "The Liquid Metal finish palette" },
+  { img: lmStudio, category: "Architecture", caption: "Real metal spray application in progress" },
+  { img: aluHero, category: "Aluminium", caption: "Aluminium profile system for sign and display" },
+  { img: aluProductGroup, category: "Aluminium", caption: "Range of aluminium profile cross-sections" },
+  { img: aluWorkshop, category: "Aluminium", caption: "Aluminium sign and display fabrication" },
+];
+
+const categories = ["All", "Liquid Metal", "Patina", "Aluminium", "Architecture"];
+---
+
+<BaseLayout
+  title="Projects & Material Gallery"
+  description="A gallery of Lazlo's real metal Liquid Metal finishes, antique patina textures, chrome effects and aluminium profile systems across architecture, interiors and furniture."
+  path="/projects/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Projects", href: "/projects/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading as="h1" eyebrow="Projects & Gallery" title="Materials in Application" align="center" lede="A closer look at Lazlo's real metal finishes, patina textures and aluminium profile systems as used across furniture, interiors and architectural applications." />
+
+      <div class="filters" role="tablist" aria-label="Filter gallery by category">
+        {categories.map((c, i) => (
+          <button class="filter-btn" data-filter={c} aria-pressed={i === 0 ? "true" : "false"}>{c}</button>
+        ))}
+      </div>
+
+      <div class="masonry" id="gallery">
+        {gallery.map((item) => (
+          <figure class="tile reveal" data-category={item.category}>
+            <Image src={item.img} alt={item.caption} width={700} height={700} loading="lazy" />
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Have a Project to Discuss?" lede="Share your space, substrate and finish preference — we'll help bring it to life." />
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const tiles = document.querySelectorAll<HTMLElement>(".tile");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      const filter = btn.dataset.filter;
+      tiles.forEach((tile) => {
+        const show = filter === "All" || tile.dataset.category === filter;
+        (tile as HTMLElement).style.display = show ? "" : "none";
+      });
+    });
+  });
+</script>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.55em 1.3em;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.25s var(--ease), color 0.25s var(--ease), background 0.25s var(--ease);
+  }
+
+  .filter-btn[aria-pressed="true"] {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+    color: #fff6f5;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .masonry {
+    columns: 3 260px;
+    column-gap: 1.25rem;
+  }
+
+  .tile {
+    break-inside: avoid;
+    margin: 0 0 1.25rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .tile :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s var(--ease);
+  }
+
+  .tile:hover :global(img) {
+    transform: scale(1.05);
+  }
+
+  figcaption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 1.5rem 1rem 0.9rem;
+    font-size: 0.78rem;
+    color: var(--text);
+    background: linear-gradient(to top, rgba(8, 8, 9, 0.92), transparent);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+
+  .tile:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .masonry {
+      columns: 1;
+    }
+    figcaption {
+      opacity: 1;
+      transform: none;
+      position: static;
+      background: none;
+      padding: 0.6rem 0.1rem 0;
+      color: var(--text-muted);
+    }
+  }
+</style>

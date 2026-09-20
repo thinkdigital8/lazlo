@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
+import { Image } from "astro:assets";
+import { site } from "../../data/site";
+import workshop from "../../assets/aluminium/workshop-in-house.png";
+import liquidMetalIntro from "../../assets/liquid-metal/liquid-metal-coatings-intro.png";
+---
+
+<BaseLayout
+  title="About Lazlo"
+  description="Lazlo is an Ahmedabad-based specialist in Liquid Metal real-metal finishes and aluminium alloy 6063 profiles, with 30+ years of experience in sign and display manufacturing."
+  path="/about/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "About", href: "/about/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading as="h1" eyebrow="About Lazlo" title="Real Metal Finishes, Precision Aluminium, One Team" lede={`Lazlo is passionate about creating beautiful and impactful surfaces — from real-metal Liquid Metal coatings to precision aluminium profiles for sign and display. We work with everyone from small local sign companies to the largest trade suppliers, and with ${site.yearsExperience} years of experience, we've built a reputation for quality and service with leading companies across India.`} />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container split">
+      <div class="split-media reveal">
+        <Image src={liquidMetalIntro} alt="Real metal Liquid Metal finish samples on furniture and lighting" width={900} height={720} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Liquid Metal Expertise" title="Specialists in Real Metal Surface Finishes" lede="Our Liquid Metal technique applies real brass, copper, bronze, zinc, graphite and iron onto rigid substrates — turning everyday materials into high-end metallic surfaces for architecture, interiors, furniture and art. We complement this with handcrafted antique patina finishes and a mirror-like chrome spray system." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split reverse">
+      <div class="split-media reveal">
+        <Image src={workshop} alt="Aluminium sign and display fabrication at Lazlo's workshop" width={900} height={520} />
+      </div>
+      <div class="split-copy">
+        <SectionHeading eyebrow="Aluminium Expertise" title="30+ Years in Aluminium Profile Manufacturing" lede="Lazlo manufactures a complete line of innovative aluminium alloy 6063 profile solutions for indoor and outdoor advertising — SEG fabric frames, snap frames, name plates, directory systems, box frames, totem and keder profiles — built for simple assembly and quality results." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Our Approach" title="Quality, Partnership & Innovation" align="center" />
+      <div class="grid grid-3">
+        <div class="value-card reveal">
+          <h3>Quality First</h3>
+          <p class="text-muted">Every profile and finish is manufactured and applied to a consistent, professional standard, whether it's a single name plate or a full architectural surface.</p>
+        </div>
+        <div class="value-card reveal">
+          <h3>Long-Term Partnership</h3>
+          <p class="text-muted">We aim for long-term partnerships with businesses looking to expand their range of signage and surface finishing products and services.</p>
+        </div>
+        <div class="value-card reveal">
+          <h3>Constant Innovation</h3>
+          <p class="text-muted">From Liquid Metal to chrome spray finishes, we continue to bring new, innovative products to the market to enhance your projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="Where to Find Us" title="Our Locations" align="center" />
+      <div class="grid grid-2 location-grid">
+        <div class="location-card reveal">
+          <h3>{site.addresses.office.label}</h3>
+          <p class="text-muted">{site.addresses.office.lines.map((l) => <>{l}<br /></>)}</p>
+        </div>
+        <div class="location-card reveal">
+          <h3>{site.addresses.workshop.label}</h3>
+          <p class="text-muted">{site.addresses.workshop.lines.map((l) => <>{l}<br /></>)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Want to Partner With Us?" lede="Whether you're a sign company, architect, interior designer or trade supplier — let's talk about your next project." />
+</BaseLayout>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .split.reverse .split-media { order: 2; }
+  .split-media :global(img) { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); aspect-ratio: 4/3; }
+  .section-alt { background: var(--bg-elevated); }
+  .value-card { padding: 1.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .value-card h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.6rem; }
+  .location-card { padding: 1.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .location-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .location-card p { line-height: 1.6; }
+  @media (max-width: 900px) { .split, .split.reverse { grid-template-columns: 1fr; } .split.reverse .split-media { order: 0; } }
+  @media (max-width: 560px) { .location-grid { grid-template-columns: 1fr; } }
+</style>

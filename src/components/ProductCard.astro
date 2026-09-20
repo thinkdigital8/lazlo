@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: ImageMetadata;
+  alt: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  href?: string;
+  ctaLabel?: string;
+}
+
+const { image, alt, eyebrow, title, description, href, ctaLabel = "View Details" } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+
+<Tag href={href} class="product-card reveal">
+  <div class="media">
+    <Image src={image} alt={alt} width={640} height={640} loading="lazy" />
+  </div>
+  <div class="body">
+    {eyebrow && <p class="eyebrow-sm">{eyebrow}</p>}
+    <h3 class="h3">{title}</h3>
+    <p class="desc text-muted">{description}</p>
+    {href && <span class="link">{ctaLabel} <span aria-hidden="true">→</span></span>}
+  </div>
+</Tag>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+
+  a.product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(237, 28, 36, 0.4);
+    box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(237, 28, 36, 0.15);
+  }
+
+  .media {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+
+  .media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease);
+  }
+
+  a.product-card:hover .media :global(img) {
+    transform: scale(1.06);
+  }
+
+  .body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .eyebrow-sm {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .link {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-bright);
+  }
+</style>

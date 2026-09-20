@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import CTASection from "../../../components/CTASection.astro";
+import { Image } from "astro:assets";
+import { aluminiumCategories, aluminiumImages } from "../../../data/aluminium";
+
+export function getStaticPaths() {
+  return aluminiumCategories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { cat },
+  }));
+}
+
+const { cat } = Astro.props;
+---
+
+<BaseLayout
+  title={`${cat.name} — Aluminium Profiles`}
+  description={`${cat.description} Manufactured from aluminium alloy 6063 with 15–20 micron anodising.`}
+  path={`/aluminium/${cat.slug}/`}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Aluminium", href: "/aluminium/" }, { label: cat.name, href: `/aluminium/${cat.slug}/` }]} />
+  </div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading as="h1" eyebrow="Aluminium Profile System" title={cat.name} lede={cat.description} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {cat.products.length > 0 ? (
+        <div class="grid grid-2 product-grid">
+          {cat.products.map((p) => (
+            <article class="product-detail reveal">
+              <div class="media">
+                <Image src={p.image} alt={`${p.name} aluminium profile`} width={700} height={700} />
+              </div>
+              <div class="body">
+                <p class="code">{p.code}</p>
+                <h2 class="h3">{p.name}</h2>
+                <p class="text-muted desc">{p.description}</p>
+                <ul class="specs">
+                  {p.specs.map((s) => <li>{s}</li>)}
+                </ul>
+                <p class="colours"><strong>Colours:</strong> {p.colours.join(", ")}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state reveal">
+          <Image src={aluminiumImages.productGroup} alt="Lazlo aluminium profile range" width={700} height={600} />
+          <p class="lede">
+            {cat.name} profiles are built on the same aluminium alloy 6063 system as the rest of our range. Contact us with your size and installation requirement and we'll recommend the right profile.
+          </p>
+          <a href="/contact/" class="btn btn-primary">Request Totem Specifications</a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CTASection title={`Ready to Spec ${cat.shortName}?`} lede="Share your sizes, media type and installation requirement — we'll recommend the right profile." primaryLabel="Request a Quote" />
+</BaseLayout>
+
+<style>
+  .product-grid { gap: 2.5rem; }
+  .product-detail { display: grid; grid-template-columns: 260px 1fr; gap: 1.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; padding: 1.5rem; }
+  .media { border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 1; }
+  .media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .code { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.35rem; }
+  .product-detail h2 { margin-bottom: 0.6rem; }
+  .desc { font-size: 0.9rem; margin-bottom: 1rem; }
+  .specs { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+  .specs li { font-size: 0.82rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
+  .specs li::before { content: "—"; position: absolute; left: 0; color: var(--text-faint); }
+  .colours { font-size: 0.82rem; color: var(--text-muted); }
+  .colours strong { color: var(--text); }
+  .empty-state { max-width: 560px; margin-inline: auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .empty-state :global(img) { border-radius: var(--radius-lg); }
+  @media (max-width: 700px) {
+    .product-detail { grid-template-columns: 1fr; }
+  }
+</style>

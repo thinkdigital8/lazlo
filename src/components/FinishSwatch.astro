@@ -1,0 +1,49 @@
+---
+interface Props {
+  name: string;
+  swatch: string;
+  description?: string;
+}
+
+const { name, swatch, description } = Astro.props;
+---
+
+<div class="finish-swatch reveal">
+  <div class="swatch" style={`--swatch: ${swatch}`}></div>
+  <h3>{name}</h3>
+  {description && <p class="text-muted">{description}</p>}
+</div>
+
+<style>
+  .finish-swatch {
+    text-align: center;
+  }
+
+  .swatch {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    background:
+      radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.55), transparent 45%),
+      radial-gradient(circle at 70% 75%, rgba(0, 0, 0, 0.35), transparent 55%),
+      var(--swatch);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 12px 28px rgba(0, 0, 0, 0.35);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+
+  .finish-swatch:hover .swatch {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), 0 0 0 3px rgba(237, 28, 36, 0.18), 0 18px 34px rgba(0, 0, 0, 0.45);
+  }
+
+  .finish-swatch h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .finish-swatch p {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+</style>
