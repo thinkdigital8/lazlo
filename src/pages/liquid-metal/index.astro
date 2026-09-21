@@ -11,7 +11,7 @@ import { liquidMetalImages, substrates, applications, finishes, patinaFinishes, 
 
 <BaseLayout
   title="Liquid Metal Coatings — Real Metal Finishes"
-  description="Lazlo's Liquid Metal coating applies real brass, copper, bronze, zinc, graphite and iron onto wood, steel, glass, FRP, MDF, ACP, concrete and more — for architecture, interiors and furniture."
+  description="Lazlo's Liquid Metal coating applies real brass, copper, bronze, tin and iron finishes — including rust, verdigris and antique patina tones — onto wood, steel, glass, FRP, MDF, ACP, concrete and more."
   path="/liquid-metal/"
 >
   <Hero
@@ -61,7 +61,7 @@ import { liquidMetalImages, substrates, applications, finishes, patinaFinishes, 
 
   <section class="section">
     <div class="container">
-      <SectionHeading eyebrow="A Palette of Pure Metal" title="Choose Your Finish" align="center" lede="Seven real metal finishes, plus custom alloy blends on request." />
+      <SectionHeading eyebrow="A Palette of Pure Metal" title="Choose Your Finish" align="center" lede={`${finishes.length} real metal finishes, plus custom alloy blends on request.`} />
       <div class="grid grid-4">
         {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} />)}
       </div>
