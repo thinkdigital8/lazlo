@@ -1,21 +1,21 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-import SectionHeading from "../../../components/SectionHeading.astro";
-import CTASection from "../../../components/CTASection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
 import { Image } from "astro:assets";
-import { patinaFinishes, patinaMetals, patinaSizes } from "../../../data/liquid-metal";
-import patinaHero from "../../../assets/patina/patina-hero.png";
-import sampleM from "../../../assets/patina/patina-sample-m0001.jpg";
-import sampleT from "../../../assets/patina/patina-sample-t0001.jpg";
+import { patinaFinishes, patinaMetals, patinaSizes } from "../../data/liquid-metal";
+import patinaHero from "../../assets/patina/patina-hero.png";
+import sampleM from "../../assets/patina/patina-sample-m0001.jpg";
+import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
 ---
 
 <BaseLayout
   title="Antique Patina Finishes — Rusted Iron, Verdigris Copper, Antique Brass"
-  description="Lazlo's handcrafted antique patina finishes on steel, zinc, brass and copper — including rusted iron, verdigris copper and antique brass — for wall panels, furniture, facades and signage."
-  path="/liquid-metal/patina/"
+  description="Lazlo's handcrafted antique patina finishes on mild steel — including rusted iron, verdigris copper and antique brass — for wall panels, furniture, facades and signage."
+  path="/patina/"
 >
-  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }, { label: "Antique Patina", href: "/liquid-metal/patina/" }]} /></div>
+  <div class="container"><Breadcrumbs items={[{ label: "Antique Patina", href: "/patina/" }]} /></div>
 
   <section class="section-tight">
     <div class="container split">
@@ -24,7 +24,7 @@ import sampleT from "../../../assets/patina/patina-sample-t0001.jpg";
           as="h1"
           eyebrow="Patina Surfaces"
           title="Instantly Vintage, Forever Classic"
-          lede="Lazlo brings handcrafted patina finishes to steel, zinc, brass and copper. Patina is applied to activated metal surfaces to create a unique, mottled, artistic ambiance that varies from sheet to sheet — then sealed with a clear coat to protect against scratches, scrapes and rusting caused by environmental factors."
+          lede="Lazlo brings handcrafted patina finishes to mild steel. Patina is applied to activated metal surfaces to create a unique, mottled, artistic ambiance that varies from sheet to sheet — then sealed with a clear coat to protect against scratches, scrapes and rusting caused by environmental factors."
         />
       </div>
       <div class="split-media reveal">

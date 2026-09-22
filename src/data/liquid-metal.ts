@@ -221,7 +221,7 @@ export const patinaFinishes = [
   },
 ] as const;
 
-export const patinaMetals = ["Steel", "Zinc", "Brass", "Copper"] as const;
+export const patinaMetals = ["Mild Steel"] as const;
 
 export const patinaSizes = ["2 × 2 ft", "2 × 4 ft", "4 × 4 ft", "8 × 4 ft", "Custom sizes on request"] as const;
 

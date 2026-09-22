@@ -6,6 +6,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://lazloindia.com',
   trailingSlash: 'always',
+  redirects: {
+    '/liquid-metal/patina/': '/patina/',
+    '/liquid-metal/chrome/': '/chrome/',
+  },
   integrations: [sitemap()],
   image: {
     domains: [],

@@ -42,10 +42,10 @@ export const nav = [
       { label: "Overview", href: "/liquid-metal/" },
       { label: "Applications", href: "/liquid-metal/applications/" },
       { label: "Metal Finishes", href: "/liquid-metal/finishes/" },
-      { label: "Antique Patina", href: "/liquid-metal/patina/" },
-      { label: "Chrome Finishes", href: "/liquid-metal/chrome/" },
     ],
   },
+  { label: "Antique Patina", href: "/patina/" },
+  { label: "Chrome Finishes", href: "/chrome/" },
   {
     label: "Aluminium",
     href: "/aluminium/",

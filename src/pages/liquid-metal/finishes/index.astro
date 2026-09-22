@@ -5,7 +5,13 @@ import SectionHeading from "../../../components/SectionHeading.astro";
 import CTASection from "../../../components/CTASection.astro";
 import FinishSwatch from "../../../components/FinishSwatch.astro";
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import { liquidMetalImages, finishes, customAlloyNote } from "../../../data/liquid-metal";
+import blackAntiquePatinaPhoto from "../../../assets/liquid-metal/finishes/black-antique-patina.jpg";
+
+const finishPhotos: Partial<Record<(typeof finishes)[number]["slug"], ImageMetadata>> = {
+  "black-antique-patina": blackAntiquePatinaPhoto,
+};
 ---
 
 <BaseLayout
@@ -19,7 +25,7 @@ import { liquidMetalImages, finishes, customAlloyNote } from "../../../data/liqu
     <div class="container">
       <SectionHeading as="h1" eyebrow="A Palette of Pure Metal" title="The Metal Finish Collection" lede="Every finish in this collection is genuine metal, applied to the surface — not a printed or painted imitation." align="center" />
       <div class="grid grid-4">
-        {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} />)}
+        {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} photo={finishPhotos[f.slug]} />)}
       </div>
       <p class="alloy-note reveal">{customAlloyNote}</p>
     </div>
@@ -32,7 +38,7 @@ import { liquidMetalImages, finishes, customAlloyNote } from "../../../data/liqu
       </div>
       <div class="split-copy">
         <SectionHeading eyebrow="Real Metal Coatings" title="Finish, Not Just Colour" lede="Because each finish is real metal, it can be further treated — polished, brushed, or aged into a patina — for a result that behaves like solid metal because, on the surface, it is." />
-        <a href="/liquid-metal/patina/" class="btn btn-outline" style="margin-top:1.5rem;">See Antique Patina Options</a>
+        <a href="/patina/" class="btn btn-outline" style="margin-top:1.5rem;">See Antique Patina Options</a>
       </div>
     </div>
   </section>

@@ -1,22 +1,22 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
-import SectionHeading from "../../../components/SectionHeading.astro";
-import CTASection from "../../../components/CTASection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
 import { Image } from "astro:assets";
-import { chromeColours, chromeSubstrates, chromeApplications } from "../../../data/liquid-metal";
-import chromeHero from "../../../assets/chrome/chrome-hero.png";
-import chromeProcess from "../../../assets/chrome/chrome-process.png";
-import chromeColourRange from "../../../assets/chrome/chrome-colour-range.png";
-import chromeTech from "../../../assets/chrome/chrome-technical-features.png";
+import { chromeColours, chromeSubstrates, chromeApplications } from "../../data/liquid-metal";
+import chromeHero from "../../assets/chrome/chrome-hero.png";
+import chromeProcess from "../../assets/chrome/chrome-process.png";
+import chromeColourRange from "../../assets/chrome/chrome-colour-range.png";
+import chromeTech from "../../assets/chrome/chrome-technical-features.png";
 ---
 
 <BaseLayout
   title="Chrome Spray Finishes — Mirror-Like Coatings"
   description="Lazlo's Chrome Spray Finish replicates the high-gloss, mirror-like look of real chrome on ceramics, plastics, rubber, wood, metals, MDF and terracotta — in silver, gold, rose gold and a full colour range."
-  path="/liquid-metal/chrome/"
+  path="/chrome/"
 >
-  <div class="container"><Breadcrumbs items={[{ label: "Liquid Metal", href: "/liquid-metal/" }, { label: "Chrome Finishes", href: "/liquid-metal/chrome/" }]} /></div>
+  <div class="container"><Breadcrumbs items={[{ label: "Chrome Finishes", href: "/chrome/" }]} /></div>
 
   <section class="section-tight">
     <div class="container split">
