@@ -42,7 +42,6 @@ function isActive(href: string) {
     </nav>
 
     <div class="cta-group">
-      <a href={site.phoneHref} class="phone-link">{site.phone}</a>
       <a href="/contact/" class="btn btn-primary">Discuss Your Project</a>
     </div>
 
@@ -70,7 +69,6 @@ function isActive(href: string) {
         ))}
       </ul>
       <div class="mobile-cta">
-        <a href={site.phoneHref} class="phone-link">{site.phone}</a>
         <a href="/contact/" class="btn btn-primary">Discuss Your Project</a>
       </div>
     </nav>
@@ -173,6 +171,7 @@ function isActive(href: string) {
     letter-spacing: 0.01em;
     color: var(--text);
     padding-block: 1.7rem;
+    white-space: nowrap;
   }
 
   .nav-item > a::before {
@@ -345,6 +344,18 @@ function isActive(href: string) {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+
+  @media (max-width: 1180px) {
+    .primary-nav ul {
+      gap: 1.1rem;
+    }
+    .nav-item > a {
+      font-size: 0.82rem;
+    }
+    .cta-group {
+      gap: 1rem;
+    }
   }
 
   @media (max-width: 980px) {

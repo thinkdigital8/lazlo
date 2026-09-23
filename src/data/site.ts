@@ -44,7 +44,7 @@ export const nav = [
       { label: "Metal Finishes", href: "/liquid-metal/finishes/" },
     ],
   },
-  { label: "Antique Patina", href: "/patina/" },
+  { label: "Patina on MS", href: "/patina/" },
   { label: "Chrome Finishes", href: "/chrome/" },
   {
     label: "Aluminium",
@@ -64,5 +64,4 @@ export const nav = [
   { label: "Industries", href: "/industries/" },
   { label: "About", href: "/about/" },
   { label: "Projects", href: "/projects/" },
-  { label: "Contact", href: "/contact/" },
 ] as const;
