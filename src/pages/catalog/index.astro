@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import CTASection from "../../components/CTASection.astro";
+import CatalogCard from "../../components/CatalogCard.astro";
+import { catalogs } from "../../data/catalogs";
+---
+
+<BaseLayout
+  title="Download Catalogs"
+  description="Download Lazlo's product catalogs."
+  path="/catalog/"
+>
+  <div class="container"><Breadcrumbs items={[{ label: "Download Catalog", href: "/catalog/" }]} /></div>
+
+  <section class="section-tight">
+    <div class="container">
+      <SectionHeading
+        as="h1"
+        eyebrow="Resources"
+        title="Download Our Catalogs"
+        lede="Browse and download Lazlo's product catalogs."
+        align="center"
+      />
+      <div class="grid grid-3">
+        {catalogs.map((c) => (
+          <CatalogCard title={c.title} format={c.format} fileUrl={c.fileUrl} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="Can't Find What You're Looking For?" lede="Tell us about your project and we'll send over the right specifications and finish samples." />
+</BaseLayout>

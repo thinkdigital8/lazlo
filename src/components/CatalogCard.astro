@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  format: string;
+  fileUrl: string;
+}
+
+const { title, format, fileUrl } = Astro.props;
+---
+
+<div class="catalog-card reveal">
+  <div class="catalog-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+      <path d="M14 3v5h5" />
+    </svg>
+  </div>
+  <div class="catalog-body">
+    <h3>{title}</h3>
+  </div>
+  <a href={fileUrl} download class="btn btn-outline catalog-btn">
+    Download {format}
+  </a>
+</div>
+
+<style>
+  .catalog-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+
+  .catalog-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(237, 28, 36, 0.45);
+    box-shadow: 0 16px 32px -18px rgba(237, 28, 36, 0.45);
+  }
+
+  .catalog-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--bg-elevated);
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .catalog-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .catalog-body {
+    flex: 1;
+  }
+
+  .catalog-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .catalog-btn {
+    margin-top: 1.5rem;
+    align-self: flex-start;
+  }
+</style>
