@@ -8,6 +8,7 @@ import { patinaFinishes, patinaMetals, patinaSizes } from "../../data/liquid-met
 import patinaHero from "../../assets/patina/patina-hero.png";
 import sampleM from "../../assets/patina/patina-sample-m0001.jpg";
 import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
+import sampleA from "../../assets/patina/patina-sample-a0001.png";
 ---
 
 <BaseLayout
@@ -24,7 +25,7 @@ import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
           as="h1"
           eyebrow="Patina Surfaces"
           title="Instantly Vintage, Forever Classic"
-          lede="Lazlo brings handcrafted patina finishes to mild steel. Patina is applied to activated metal surfaces to create a unique, mottled, artistic ambiance that varies from sheet to sheet — then sealed with a clear coat to protect against scratches, scrapes and rusting caused by environmental factors."
+          lede="Lazlo brings handcrafted patina finishes to mild steel. Patina is applied to activated metal surfaces to create a unique, mottled, artistic ambiance that varies from sheet to sheet — then sealed with a clear coat to protect against scratches, scrapes and rusting caused by environmental factors. Every pre-finished sheet is one of a kind, with high variability in colour patterning from sheet to sheet, creating a stunning spectrum of colour as the angle of view or illumination changes."
         />
       </div>
       <div class="split-media reveal">
@@ -47,10 +48,11 @@ import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
           <h3>{patinaFinishes[1].name}</h3>
           <p class="text-muted">{patinaFinishes[1].description}</p>
         </div>
-        <div class="patina-card reveal text-card">
+        <div class="patina-card reveal">
+          <div class="patina-media"><Image src={sampleA} alt="Handcrafted antique brass patina finish sample showing warm oxidised colour variation" width={600} height={600} /></div>
           <h3>{patinaFinishes[2].name}</h3>
           <p class="text-muted">{patinaFinishes[2].description}</p>
-          <p class="note">Our pre-finished sheets are one of a kind, with high variability in colour patterning from sheet to sheet — by design.</p>
+          <p class="note">With over 100 handcrafted finishes to choose from, we'll help you find the right patina for your space.</p>
         </div>
       </div>
     </div>
@@ -67,7 +69,7 @@ import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
           </div>
           <div>
             <h3>Exterior</h3>
-            <p class="text-muted">Facades, signage, garden installations, fences, outdoor lighting, sculpture installations.</p>
+            <p class="text-muted">Facades, signage, garden installations such as fences, outdoor lighting fixtures, and sculpture installations.</p>
           </div>
         </div>
       </div>
@@ -78,8 +80,45 @@ import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
         <ul class="chip-list">
           {patinaSizes.map((s) => <li>{s}</li>)}
         </ul>
-        <p class="text-muted" style="margin-top:1.25rem;">On-site installation available, or we supply adhesives and tapes for DIY application.</p>
+        <p class="text-muted" style="margin-top:1.25rem;">We provide installation services at the site for seamless integration. If you'd prefer to install the finishes yourself, we supply the necessary adhesives and tapes.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading eyebrow="Beyond the Sheet" title="Custom Solutions & Installations" align="center" />
+      <div class="grid grid-3 service-grid">
+        <div class="service-card reveal">
+          <h3>Delivery & Installation</h3>
+          <p class="text-muted">We deliver and install your wall panels, doors, and ceilings.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Patina & Metal Effects</h3>
+          <p class="text-muted">We provide job work, applying patina and metal effects on your installations according to your requirements.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Turnkey Furniture & Fabrication</h3>
+          <p class="text-muted">We offer turnkey furniture and fabrication installations based on your design.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Custom Metal Work</h3>
+          <p class="text-muted">We create custom-designed metalwork for any project.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Art Installations</h3>
+          <p class="text-muted">We specialise in crafting and installing metal art pieces.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Architectural Metal Design</h3>
+          <p class="text-muted">We provide tailored solutions for unique architectural metal requirements.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Site Consultation</h3>
+          <p class="text-muted">We offer consultation for the design and integration of metal finishes and installations.</p>
+        </div>
+      </div>
+      <p class="process-note reveal"><strong>Please note:</strong> The process is handmade with the help of a natural oxidation process. The pattern will not be identical, ensuring each one has its own distinct charm — however, the colour palette will remain similar.</p>
     </div>
   </section>
 
@@ -103,5 +142,11 @@ import sampleT from "../../assets/patina/patina-sample-t0001.jpg";
   .app-cols h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.5rem; }
   .chip-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .chip-list li { padding: 0.4em 0.85em; border: 1px solid var(--border-strong); border-radius: 999px; font-size: 0.8rem; color: var(--text-muted); }
+  .service-grid { margin-top: 2.5rem; }
+  .service-card { padding: 1.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .service-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .service-card p { font-size: 0.88rem; line-height: 1.55; }
+  .process-note { margin-top: 2rem; text-align: center; font-size: 0.85rem; color: var(--text-faint); max-width: 640px; margin-inline: auto; }
   @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .app-cols { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .service-grid { grid-template-columns: 1fr; } }
 </style>

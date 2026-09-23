@@ -5,7 +5,6 @@ import SectionHeading from "../components/SectionHeading.astro";
 import CTASection from "../components/CTASection.astro";
 import IndustryCard from "../components/IndustryCard.astro";
 import ProductCard from "../components/ProductCard.astro";
-import FinishSwatch from "../components/FinishSwatch.astro";
 import { Image } from "astro:assets";
 import {
   liquidMetalImages,
@@ -86,18 +85,20 @@ import chromeHero from "../assets/chrome/chrome-hero.png";
 
   <!-- METAL FINISH COLLECTION -->
   <section class="section">
-    <div class="container">
-      <SectionHeading
-        eyebrow="The Material Palette"
-        title="A Palette of Pure Metal"
-        lede={`Choose from ${finishes.length} real metal finishes — each one applied as genuine metal, not a printed or painted imitation.`}
-        align="center"
-      />
-      <div class="grid grid-4">
-        {finishes.map((f) => <FinishSwatch name={f.name} swatch={f.swatch} description={f.description} />)}
+    <div class="container split">
+      <div class="split-media palette-media reveal">
+        <Image src={liquidMetalImages.metalFinishCollection} alt="Lazlo's 12-finish metal palette: Lite Brass, Dark Brass, Copper, Tin, Brass, Dark Bronze, Iron, Bronze, Dark Copper, Rust, Verdigris and Black Antique Patina" width={720} height={1280} />
       </div>
-      <div class="center-cta">
-        <a href="/liquid-metal/finishes/" class="btn btn-outline">Explore All Finishes</a>
+      <div class="split-copy">
+        <SectionHeading
+          eyebrow="The Material Palette"
+          title="A Palette of Pure Metal"
+          lede={`Choose from ${finishes.length} real metal finishes — each one applied as genuine metal, not a printed or painted imitation.`}
+        />
+        <ul class="chip-list">
+          {finishes.map((f) => <li>{f.name}</li>)}
+        </ul>
+        <a href="/liquid-metal/finishes/" class="btn btn-outline" style="margin-top:2rem;">Explore All Finishes</a>
       </div>
     </div>
   </section>
@@ -231,6 +232,12 @@ import chromeHero from "../assets/chrome/chrome-hero.png";
     object-fit: cover;
     border-radius: var(--radius-lg);
     aspect-ratio: 4 / 3;
+  }
+
+  .palette-media :global(img) {
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+    background: var(--bg-elevated);
   }
 
   .section-alt {

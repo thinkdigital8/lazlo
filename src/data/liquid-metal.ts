@@ -2,6 +2,7 @@ import applicationIntro from "../assets/liquid-metal/liquid-metal-coatings-intro
 import applicationsShowcase from "../assets/liquid-metal/real-metal-coatings-applications.png";
 import artistryMeetsFunction from "../assets/liquid-metal/artistry-meets-function.png";
 import metalPalette from "../assets/liquid-metal/metal-finish-palette.png";
+import metalFinishCollection from "../assets/liquid-metal/metal-finish-collection.png";
 import antiqueAesthetic from "../assets/liquid-metal/antique-aesthetic.png";
 import studioToSite from "../assets/liquid-metal/studio-to-site.png";
 import liquidMetalSample from "../assets/liquid-metal/liquid-metal-sample.jpg";
@@ -11,6 +12,7 @@ export const liquidMetalImages = {
   applicationsShowcase,
   artistryMeetsFunction,
   metalPalette,
+  metalFinishCollection,
   antiqueAesthetic,
   studioToSite,
   sample: liquidMetalSample,

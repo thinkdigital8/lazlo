@@ -21,7 +21,9 @@ const { icon, name, description, href = "/industries/" } = Astro.props;
 
 <style>
   .industry-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 1.75rem;
     background: var(--surface);
     border: 1px solid var(--border);
