@@ -6,11 +6,12 @@ interface Props {
   description: string;
   path: string;
   image?: string;
+  keywords?: string[];
   noindex?: boolean;
   type?: "website" | "article" | "product";
 }
 
-const { title, description, path, image, noindex = false, type = "website" } = Astro.props;
+const { title, description, path, image, keywords, noindex = false, type = "website" } = Astro.props;
 
 const canonical = new URL(path, site.url).toString();
 const ogImage = image ? new URL(image, site.url).toString() : new URL("/og-image.jpg", site.url).toString();
@@ -19,6 +20,7 @@ const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
+{keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
 <link rel="canonical" href={canonical} />
 {noindex ? (
   <meta name="robots" content="noindex, nofollow" />
@@ -31,6 +33,8 @@ const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:locale" content="en_IN" />
 

@@ -26,6 +26,53 @@ const schema = {
       sameAs: [site.social.linkedin],
       description:
         "Lazlo specialises in real metal Liquid Metal coatings, antique patina finishes and precision aluminium profiles for signage, display and architectural applications.",
+      areaServed: "Worldwide",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Lazlo Product Range",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Liquid Metal Coating",
+              description:
+                "Real metal coating in brass, copper, bronze, tin and iron, sprayed onto rigid substrates for architectural, interior and furniture surfaces.",
+              url: `${site.url}/liquid-metal/`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Antique Patina Finish",
+              description:
+                "Handcrafted antique patina finishes on steel, zinc, brass and copper, including rusted iron and verdigris copper tones, for walls, furniture and facades.",
+              url: `${site.url}/patina/`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Chrome Spray Finish",
+              description:
+                "Mirror-like chrome spray coating system for ceramics, plastics, wood and metal, used in decor, fixtures and packaging.",
+              url: `${site.url}/chrome/`,
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: "Aluminium Alloy 6063 Profiles",
+              description:
+                "Anodised aluminium alloy 6063 profiles for SEG fabric frames, snap frames, name plates, directory systems, box frames, totem and keder signage systems.",
+              url: `${site.url}/aluminium/`,
+            },
+          },
+        ],
+      },
     },
     {
       "@type": "WebSite",
